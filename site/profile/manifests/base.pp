@@ -7,7 +7,7 @@ class profile::base {
   }
   file {"${jdk_path}/${jdk}":
     ensure => present,
-    source => '/polk/nas/repo/${jdk}'
+    source => "/polk/nas/repo/${jdk}"
   }
   
   exec { 'extract_java':
