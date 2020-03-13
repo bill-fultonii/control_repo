@@ -11,7 +11,7 @@ class profile::base {
   }
   
   exec { 'extract_java':
-    command => "tar -xzf ${jdk}",
+    command => "/usr/bin/tar -xzf ${jdk}",
     cwd => "${jdk_path}",
     refreshonly => true
   }
