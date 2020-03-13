@@ -1,9 +1,18 @@
 class profile::base {
-  file {'/usr/java/':
+  $jdk = 'jdk-13.0.2_linux-x64_bin.tar.gz'
+  $jdk_path = '/usr/java'
+
+  file {"${jdk_path}":
     ensure => 'directory'
   }
-  file {'/usr/java/jdk-13.0.2_linux-x64_bin.tar.gz':
+  file {"${jdk_path}/${jdk}":
     ensure => present,
-    source => '/polk/nas/repo/jdk-13.0.2_linux-x64_bin.tar.gz'
+    source => '/polk/nas/repo/${jdk}'
+  }
+  
+  exec { 'extract_java':
+    command => 'tar -xzf ${jdk}',
+    cwd => "${jdk_path}",
+    refreshonly => true
   }
 }
